@@ -1,0 +1,25 @@
+id: SEN-009
+title: Port scan
+description: One source blocked by the firewall on many different destination ports.
+severity: medium
+type: threshold
+match:
+  action: fw_block
+group_by: src_ip
+distinct: dst_port
+window: 60
+count: 15
+suppress: 900
+mitre:
+  tactic: Discovery
+  technique: T1046
+  name: Network Service Discovery
+explain: >
+  A building has 65,535 windows. A port scan is someone walking around
+  tapping on each one to learn which are open and what is behind them.
+false_positives:
+  - Authorized vulnerability scans
+  - Peer-to-peer software
+response:
+  - Check which ports the firewall ALLOWED for this source, since that is what the scan found
+  - If the source is internal, treat it as a possibly compromised host mapping the network

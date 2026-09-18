@@ -1,0 +1,24 @@
+id: SEN-005
+title: Cross-site scripting attempt
+description: A web request whose decoded URL contains script injection syntax.
+summary: "{method} {url_decoded}"
+severity: medium
+type: match
+match:
+  action: http_request
+  url_decoded|re: "(?i)(<script\\b|javascript:|onerror\\s*=|onload\\s*=|<img[^>]+src\\s*=\\s*x|document\\.cookie)"
+group_by: src_ip
+suppress: 300
+mitre:
+  tactic: Initial Access
+  technique: T1190
+  name: Exploit Public-Facing Application
+explain: >
+  Pinning a fake notice on the office bulletin board. The building trusts
+  the board, so everyone who reads it follows the fake instructions. XSS
+  plants attacker code on a site so that visitors' browsers run it.
+false_positives:
+  - Developers testing input handling
+response:
+  - Check whether the payload is reflected back unescaped
+  - Verify output encoding and the Content Security Policy on the page

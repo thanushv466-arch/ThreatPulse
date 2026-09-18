@@ -1,0 +1,23 @@
+id: SEN-014
+title: Account added to administrators group
+description: A user was added to a privileged local group.
+summary: "{user} added to {group_name} on {host} by {actor}"
+severity: high
+type: match
+match:
+  action: group_member_added
+  group_name|contains_any: [administrators, domain admins, enterprise admins]
+group_by: host
+suppress: 60
+mitre:
+  tactic: Privilege Escalation
+  technique: T1098
+  name: Account Manipulation
+explain: >
+  The spare key was bad enough. Now the burglar has upgraded it to the
+  master key that opens every room in the building.
+false_positives:
+  - Approved admin onboarding
+response:
+  - Verify against a change ticket
+  - Remove the membership and investigate the account that made the change

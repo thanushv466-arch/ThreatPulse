@@ -1,0 +1,26 @@
+id: SEN-010
+title: Large outbound transfer to external host
+description: An internal host sent more than 500 MB to an address outside the network in one connection.
+summary: "{src_ip} sent {mb_out} MB to {dst_ip} port {dst_port}"
+severity: high
+type: match
+match:
+  action: network_flow
+  src_internal: true
+  dst_internal: false
+  bytes_out|gte: 500000000
+group_by: src_ip
+suppress: 1800
+mitre:
+  tactic: Exfiltration
+  technique: T1048
+  name: Exfiltration Over Alternative Protocol
+explain: >
+  The alarm that matters in a bank is the one on the way OUT. Staff carry
+  envelopes out all day. Someone wheeling out a pallet at 3am is different.
+false_positives:
+  - Cloud backups, large uploads to sanctioned SaaS, video conferencing
+response:
+  - Identify the destination and whether it is a sanctioned service
+  - Identify which user and process on the host sent the data
+  - Isolate the host if the destination is unknown

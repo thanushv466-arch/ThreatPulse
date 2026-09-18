@@ -1,0 +1,5 @@
+indicator,category,source,confidence,note
+203.0.113.200,command-and-control,local-feed,high,Sample C2 address (RFC 5737 documentation range)
+198.51.100.23,ssh-bruteforce,local-feed,medium,Sample credential-stuffing source (documentation range)
+203.0.113.66,web-scanner,local-feed,medium,Sample web attack source (documentation range)
+198.51.100.150,data-drop,local-feed,medium,Sample exfiltration staging server (documentation range)

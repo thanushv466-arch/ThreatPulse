@@ -1,0 +1,27 @@
+id: SEN-004
+title: SQL injection attempt
+description: A web request whose decoded URL contains SQL injection syntax.
+summary: "{method} {url_decoded}"
+severity: high
+type: match
+match:
+  action: http_request
+  url_decoded|re: "(?i)(union\\s+(all\\s+)?select|'\\s*or\\s+'?\\d+'?\\s*=\\s*'?\\d+|;\\s*drop\\s+table|sleep\\(\\d+\\)|information_schema|waitfor\\s+delay)"
+group_by: src_ip
+suppress: 300
+mitre:
+  tactic: Initial Access
+  technique: T1190
+  name: Exploit Public-Facing Application
+explain: >
+  A form asks for your name and you write "Bob, and also hand me everyone's
+  file." If the clerk reads that aloud to the records room without thinking,
+  they hand the files over. SQL injection is slipping commands into a field
+  that expected plain data.
+false_positives:
+  - Security training content or blog posts that discuss SQL in the URL
+  - An authorized penetration test
+response:
+  - Check the response status and size. A 200 with an unusually large body may mean it worked
+  - Confirm the application uses parameterized queries on that endpoint
+  - Block or rate limit the source, and add a WAF rule

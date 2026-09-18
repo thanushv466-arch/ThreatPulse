@@ -1,0 +1,26 @@
+[project]
+name = "sentinel-soc"
+version = "1.0.0"
+description = "A small, testable SOC detection and response pipeline with a live dashboard."
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = ["Flask>=3.0,<4", "PyYAML>=6.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "S"]
+# S101: asserts are fine in tests. S311: `random` drives a simulator, not crypto.
+# S608: the two flagged queries interpolate constants only, never user input.
+ignore = ["S101", "S311", "S608"]
+
+[tool.ruff.lint.per-file-ignores]
+# Literal log lines and user-agent strings are clearer unwrapped.
+"tests/*" = ["E501"]
+"sentinel/simulator.py" = ["E501"]

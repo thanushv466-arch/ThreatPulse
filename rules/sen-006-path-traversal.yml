@@ -1,0 +1,24 @@
+id: SEN-006
+title: Path traversal attempt
+description: A web request trying to climb out of the web root to read system files.
+summary: "{method} {url_decoded}"
+severity: high
+type: match
+match:
+  action: http_request
+  url_decoded|re: "(?i)(\\.\\./|\\.\\.\\\\|/etc/(passwd|shadow)|/proc/self|boot\\.ini|win\\.ini)"
+group_by: src_ip
+suppress: 300
+mitre:
+  tactic: Initial Access
+  technique: T1190
+  name: Exploit Public-Facing Application
+explain: >
+  You ask the librarian for a book "three shelves back, out the door, down
+  the hall, in the manager's office." The ../ trick walks out of the public
+  folder and into places the website was never meant to serve.
+false_positives:
+  - Rare. Legitimate URLs almost never contain ../ after decoding
+response:
+  - Check the response status. A 200 on /etc/passwd is a confirmed file read
+  - Patch or fix path handling on the affected endpoint

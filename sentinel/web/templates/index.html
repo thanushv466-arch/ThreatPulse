@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sentinel SOC</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 2 4 7v8c0 7.5 5 13 12 15 7-2 12-7.5 12-15V7z" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="16" cy="15" r="4" fill="currentColor"/>
+      </svg>
+      <div>
+        <h1>Sentinel SOC</h1>
+        <p id="feed-state">Connecting</p>
+      </div>
+    </div>
+    <nav class="tabs" aria-label="Views">
+      <button data-view="overview" class="is-active">Overview</button>
+      <button data-view="incidents">Incidents</button>
+      <button data-view="hunt">Hunt</button>
+      <button data-view="detections">Detections</button>
+      <button data-view="response">Response</button>
+    </nav>
+    <div class="launch">
+      <label for="scenario" class="sr-only">Attack scenario</label>
+      <select id="scenario"></select>
+      <button id="launch" class="btn btn-primary">Launch simulated attack</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="view-overview" class="view is-active">
+      <div class="figures" id="figures"></div>
+
+      <section class="panel attack" aria-labelledby="attack-title">
+        <div class="panel-head">
+          <h2 id="attack-title">How far have attackers got?</h2>
+          <p>MITRE ATT&amp;CK tactics in kill-chain order, left to right. A lit column means a detection fired at that stage.</p>
+        </div>
+        <div class="matrix" id="matrix"></div>
+      </section>
+
+      <div class="split">
+        <section class="panel queue" aria-labelledby="queue-title">
+          <div class="panel-head row">
+            <h2 id="queue-title">Alert queue</h2>
+            <div class="filters">
+              <label>Severity
+                <select id="filter-severity">
+                  <option value="">All</option><option>critical</option><option>high</option>
+                  <option>medium</option><option>low</option>
+                </select>
+              </label>
+              <label>Status
+                <select id="filter-status">
+                  <option value="open">Open</option><option value="">All</option>
+                  <option value="closed">Closed</option>
+                  <option value="false_positive">False positive</option>
+                </select>
+              </label>
+            </div>
+          </div>
+          <div class="table-wrap"><table id="alerts">
+            <thead><tr><th>Time (UTC)</th><th>Severity</th><th>What happened</th><th>Who</th><th>ATT&amp;CK</th><th>Status</th></tr></thead>
+            <tbody></tbody>
+          </table></div>
+        </section>
+
+        <aside class="side">
+          <section class="panel">
+            <div class="panel-head"><h2>Activity</h2><p id="timeline-range"></p></div>
+            <div id="timeline"></div>
+            <p class="legend"><span class="key key-events"></span>Log events <span class="key key-alerts"></span>Alerts</p>
+          </section>
+          <section class="panel">
+            <div class="panel-head"><h2>Most alerted</h2></div>
+            <div id="entities"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-head"><h2>Log sources</h2></div>
+            <div id="sources"></div>
+          </section>
+        </aside>
+      </div>
+    </section>
+
+    <section id="view-incidents" class="view">
+      <div class="view-head"><h2>Incidents</h2><p>Related alerts folded into one story per attacker, ranked by risk.</p></div>
+      <div id="incident-list"></div>
+    </section>
+
+    <section id="view-hunt" class="view">
+      <div class="view-head"><h2>Hunt</h2><p>Search every stored log line by IP address, username, host, or any text.</p></div>
+      <form id="hunt-form" class="hunt-form">
+        <label for="hunt-q" class="sr-only">Search logs</label>
+        <input id="hunt-q" placeholder="203.0.113.66, deploy, WS-014, /etc/passwd" maxlength="100" autocomplete="off">
+        <button class="btn btn-primary">Search logs</button>
+      </form>
+      <p id="hunt-status" class="muted"></p>
+      <div class="table-wrap"><table id="hunt-results">
+        <thead><tr><th>Time (UTC)</th><th>Source</th><th>Host</th><th>Action</th><th>Raw log line</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+    </section>
+
+    <section id="view-detections" class="view">
+      <div class="view-head"><h2>Detections</h2><p>Every rule the engine runs, what it looks for, and what to do when it fires.</p></div>
+      <div id="rule-list"></div>
+    </section>
+
+    <section id="view-response" class="view">
+      <div class="view-head"><h2>Response</h2><p>Containment here is simulated: it writes to a blocklist and an audit trail, never to a real firewall.</p></div>
+      <div class="split">
+        <section class="panel">
+          <div class="panel-head row"><h2>Blocklist</h2><a class="btn" href="/api/blocklist.txt" target="_blank" rel="noopener">Export as text</a></div>
+          <div id="blocklist"></div>
+        </section>
+        <section class="panel">
+          <div class="panel-head"><h2>Audit trail</h2></div>
+          <div id="audit"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <div id="scrim" class="scrim" hidden></div>
+  <aside id="drawer" class="drawer" aria-label="Alert detail" hidden></aside>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <footer>Sentinel SOC v{{ version }}. Lab project on synthetic data. Attacker addresses come from documentation ranges (RFC 5737).</footer>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

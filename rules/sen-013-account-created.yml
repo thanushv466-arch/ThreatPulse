@@ -1,0 +1,22 @@
+id: SEN-013
+title: New local account created
+description: A new user account was created on a Linux or Windows host.
+summary: "Account {user} created on {host}"
+severity: medium
+type: match
+match:
+  action: user_created
+group_by: host
+suppress: 60
+mitre:
+  tactic: Persistence
+  technique: T1136.001
+  name: "Create Account: Local Account"
+explain: >
+  A burglar who cuts themselves a spare key so they can return whenever they
+  like, even after you change the lock they came in through.
+false_positives:
+  - Normal onboarding, if it arrives through the approved provisioning process
+response:
+  - Match the account against a change ticket or HR record
+  - If there is no ticket, disable the account and review who created it

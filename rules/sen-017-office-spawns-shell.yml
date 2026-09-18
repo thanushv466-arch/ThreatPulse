@@ -1,0 +1,23 @@
+id: SEN-017
+title: Office application launched a command shell
+description: Word, Excel, PowerPoint or Outlook started cmd, PowerShell or a script host.
+summary: "{parent_process} started {process_name} for {user}"
+severity: high
+type: match
+match:
+  action: process_start
+  parent_process|in: [winword.exe, excel.exe, powerpnt.exe, outlook.exe]
+  process_name|in: [cmd.exe, powershell.exe, pwsh.exe, wscript.exe, cscript.exe, mshta.exe]
+mitre:
+  tactic: Execution
+  technique: T1204.002
+  name: "User Execution: Malicious File"
+explain: >
+  A letter that, once opened, stands up and starts rearranging your office.
+  Documents are for reading. When one launches a command prompt, a malicious
+  macro almost certainly just ran.
+false_positives:
+  - A handful of legacy finance macros. Allowlist those by command line
+response:
+  - Isolate the host
+  - Find the document and the email that delivered it, then search all mailboxes for copies

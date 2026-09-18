@@ -1,0 +1,26 @@
+id: SEN-011
+title: Outbound connection to known-malicious address
+description: An internal host connected out to an address on the threat intelligence list (command-and-control, malware staging, data drop sites).
+summary: "{src_ip} connected to {dst_ip} port {dst_port}"
+severity: critical
+type: match
+match:
+  action: network_flow
+  src_internal: true
+  dst_intel: true
+group_by: src_ip
+suppress: 3600
+mitre:
+  tactic: Command and Control
+  technique: T1071
+  name: Application Layer Protocol
+explain: >
+  An employee's desk phone keeps calling a number that police have already
+  tied to a crime ring. You do not know what was said, but the call itself
+  tells you that desk is compromised.
+false_positives:
+  - Stale intelligence. IP addresses get reassigned to innocent owners
+response:
+  - Isolate the internal host from the network
+  - Capture memory and disk for forensics before rebooting
+  - Hunt for the same destination across all other hosts

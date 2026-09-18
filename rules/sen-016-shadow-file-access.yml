@@ -1,0 +1,24 @@
+id: SEN-016
+title: Password hash file read with sudo
+description: A sudo command touched /etc/shadow, where Linux stores password hashes.
+summary: "{user} ran: {command_line}"
+severity: high
+type: match
+match:
+  action: sudo_command
+  command_line|re: "/etc/shadow|/etc/sudoers|\\.ssh/id_[a-z0-9]+\\b"
+group_by: host
+suppress: 300
+mitre:
+  tactic: Credential Access
+  technique: T1003.008
+  name: "OS Credential Dumping: /etc/passwd and /etc/shadow"
+explain: >
+  Photocopying the building's entire key cabinet. The hashes are not
+  passwords yet, but they can be cracked offline at leisure, with no more
+  failed-login noise to give the attacker away.
+false_positives:
+  - Administrators doing account maintenance
+response:
+  - Confirm with the user whether they ran it
+  - If not, assume every password on that host is exposed and rotate them

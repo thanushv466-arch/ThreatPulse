@@ -1,0 +1,24 @@
+id: SEN-012
+title: Encoded or download-and-run PowerShell
+description: PowerShell launched with an encoded command or an in-memory download cradle.
+summary: "{user} ran PowerShell that decodes to: {decoded_command}"
+severity: high
+type: match
+match:
+  action: process_start
+  process_name|in: [powershell.exe, pwsh.exe]
+  command_line|re: "(?i)(\\s-e[a-z]*\\s+[A-Za-z0-9+/=]{20,}|frombase64string|downloadstring|invoke-expression|\\biex\\b)"
+mitre:
+  tactic: Execution
+  technique: T1059.001
+  name: "Command and Scripting Interpreter: PowerShell"
+explain: >
+  A note passed in class, written in code. Legitimate admins rarely need to
+  scramble their commands. Encoding is how attackers keep the real
+  instructions away from anyone reading over their shoulder.
+false_positives:
+  - Some management tools (SCCM, Intune) use encoded commands legitimately
+response:
+  - Read the decoded command (Sentinel decodes the Base64 for you in the alert summary)
+  - Identify the parent process that launched it
+  - Isolate the host if the decoded command downloads or executes remote content

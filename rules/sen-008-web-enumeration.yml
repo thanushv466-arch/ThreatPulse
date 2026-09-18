@@ -1,0 +1,25 @@
+id: SEN-008
+title: Web directory enumeration
+description: A burst of 404 responses to one client, typical of wordlist-driven content discovery.
+severity: medium
+type: threshold
+match:
+  action: http_request
+  status: 404
+group_by: src_ip
+window: 60
+count: 25
+suppress: 900
+mitre:
+  tactic: Reconnaissance
+  technique: T1595.003
+  name: "Active Scanning: Wordlist Scanning"
+explain: >
+  Someone walking down a hotel corridor trying every door handle. Most are
+  locked (404), but they are building a map of which ones are not.
+false_positives:
+  - A broken deployment that makes real assets return 404
+  - Search engine crawlers hitting stale links
+response:
+  - Review which paths returned 200 to this client. Those are what it found
+  - Rate limit the source

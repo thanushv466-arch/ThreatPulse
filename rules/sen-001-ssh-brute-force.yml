@@ -1,0 +1,27 @@
+id: SEN-001
+title: SSH brute force
+description: Many failed SSH logins from one source address in a short time.
+severity: high
+type: threshold
+match:
+  action: ssh_login
+  outcome: failure
+group_by: src_ip
+window: 120
+count: 8
+suppress: 600
+mitre:
+  tactic: Credential Access
+  technique: T1110.001
+  name: "Brute Force: Password Guessing"
+explain: >
+  Someone standing at your front door trying key after key. One wrong key is
+  a mistake. Eight wrong keys in two minutes is a burglar with a key ring.
+false_positives:
+  - A misconfigured script or backup job retrying a stale password
+  - A vulnerability scanner run by your own security team
+response:
+  - Confirm none of the attempts succeeded (see SEN-003)
+  - Block the source address at the perimeter
+  - Check whether the targeted usernames are real accounts, which suggests a leaked user list
+  - Move SSH behind a VPN or require key-based authentication

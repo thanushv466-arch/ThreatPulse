@@ -1,0 +1,56 @@
+Sep 18 16:33:12 bastion-01 sshd[10144]: Accepted publickey for deploy from 100.64.12.4 port 33770 ssh2
+Sep 18 16:42:12 bastion-01 sshd[19714]: Accepted publickey for deploy from 100.64.12.20 port 57599 ssh2
+Sep 18 16:48:00 bastion-01 sshd[5356]: Failed password for akim from 100.64.12.9 port 57205 ssh2
+Sep 18 16:48:09 bastion-01 sshd[8056]: Failed password for akim from 100.64.12.9 port 43045 ssh2
+Sep 18 16:48:18 bastion-01 sshd[20992]: Failed password for akim from 100.64.12.9 port 54151 ssh2
+Sep 18 16:48:40 bastion-01 sshd[6436]: Accepted password for akim from 100.64.12.9 port 62191 ssh2
+Sep 18 16:51:12 bastion-01 sshd[1996]: Accepted publickey for deploy from 100.64.12.27 port 57777 ssh2
+Sep 18 17:00:12 bastion-01 sshd[28776]: Accepted publickey for deploy from 100.64.12.10 port 37685 ssh2
+Sep 18 17:09:12 bastion-01 sshd[25873]: Accepted publickey for deploy from 100.64.12.19 port 50346 ssh2
+Sep 18 17:18:12 bastion-01 sshd[1605]: Accepted publickey for akim from 100.64.12.24 port 50448 ssh2
+Sep 18 17:20:22 bastion-01 sshd[7540]: Failed password for invalid user admin from 198.51.100.23 port 35013 ssh2
+Sep 18 17:20:25 bastion-01 sshd[18391]: Failed password for invalid user admin from 198.51.100.23 port 58549 ssh2
+Sep 18 17:20:28 bastion-01 sshd[19363]: Failed password for invalid user admin from 198.51.100.23 port 42508 ssh2
+Sep 18 17:20:31 bastion-01 sshd[24220]: Failed password for invalid user admin from 198.51.100.23 port 48100 ssh2
+Sep 18 17:20:34 bastion-01 sshd[4457]: Failed password for deploy from 198.51.100.23 port 53071 ssh2
+Sep 18 17:20:37 bastion-01 sshd[9725]: Failed password for deploy from 198.51.100.23 port 63405 ssh2
+Sep 18 17:20:40 bastion-01 sshd[24472]: Failed password for deploy from 198.51.100.23 port 53176 ssh2
+Sep 18 17:20:43 bastion-01 sshd[19295]: Failed password for root from 198.51.100.23 port 50448 ssh2
+Sep 18 17:20:46 bastion-01 sshd[14024]: Failed password for invalid user admin from 198.51.100.23 port 34704 ssh2
+Sep 18 17:20:49 bastion-01 sshd[6068]: Failed password for invalid user ubuntu from 198.51.100.23 port 61154 ssh2
+Sep 18 17:20:52 bastion-01 sshd[2322]: Failed password for invalid user ubuntu from 198.51.100.23 port 49643 ssh2
+Sep 18 17:20:55 bastion-01 sshd[17000]: Failed password for invalid user ubuntu from 198.51.100.23 port 64744 ssh2
+Sep 18 17:20:58 bastion-01 sshd[22684]: Failed password for invalid user admin from 198.51.100.23 port 33687 ssh2
+Sep 18 17:21:01 bastion-01 sshd[1279]: Failed password for invalid user admin from 198.51.100.23 port 31269 ssh2
+Sep 18 17:21:04 bastion-01 sshd[21500]: Failed password for deploy from 198.51.100.23 port 48395 ssh2
+Sep 18 17:21:07 bastion-01 sshd[29451]: Failed password for deploy from 198.51.100.23 port 50085 ssh2
+Sep 18 17:21:10 bastion-01 sshd[6091]: Failed password for invalid user ubuntu from 198.51.100.23 port 38751 ssh2
+Sep 18 17:21:13 bastion-01 sshd[20812]: Failed password for invalid user ubuntu from 198.51.100.23 port 33696 ssh2
+Sep 18 17:21:16 bastion-01 sshd[29818]: Failed password for invalid user ubuntu from 198.51.100.23 port 59216 ssh2
+Sep 18 17:21:19 bastion-01 sshd[26916]: Failed password for invalid user ubuntu from 198.51.100.23 port 46470 ssh2
+Sep 18 17:21:22 bastion-01 sshd[21726]: Failed password for invalid user ubuntu from 198.51.100.23 port 37069 ssh2
+Sep 18 17:21:25 bastion-01 sshd[13966]: Failed password for invalid user ubuntu from 198.51.100.23 port 35738 ssh2
+Sep 18 17:21:29 bastion-01 sshd[1355]: Accepted password for deploy from 198.51.100.23 port 43253 ssh2
+Sep 18 17:22:59 bastion-01 sudo:   deploy : TTY=pts/0 ; PWD=/home/deploy ; USER=root ; COMMAND=/usr/bin/cat /etc/shadow
+Sep 18 17:23:59 bastion-01 useradd[4121]: new user: name=svc_backup, UID=1007, GID=1007, home=/home/svc_backup, shell=/bin/bash, from=/dev/pts/0
+Sep 18 17:27:12 bastion-01 sshd[1489]: Accepted publickey for deploy from 100.64.12.12 port 37030 ssh2
+Sep 18 17:36:12 bastion-01 sshd[4892]: Accepted publickey for deploy from 100.64.12.30 port 38327 ssh2
+Sep 18 17:45:00 bastion-01 sshd[18378]: Failed password for admin from 192.0.2.77 port 30226 ssh2
+Sep 18 17:45:12 bastion-01 sshd[9990]: Accepted publickey for akim from 100.64.12.19 port 49818 ssh2
+Sep 18 17:45:35 bastion-01 sshd[24069]: Failed password for jsmith from 192.0.2.77 port 53682 ssh2
+Sep 18 17:46:10 bastion-01 sshd[21773]: Failed password for mlopez from 192.0.2.77 port 35113 ssh2
+Sep 18 17:46:45 bastion-01 sshd[6150]: Failed password for akim from 192.0.2.77 port 50833 ssh2
+Sep 18 17:47:20 bastion-01 sshd[12580]: Failed password for backup from 192.0.2.77 port 60923 ssh2
+Sep 18 17:47:55 bastion-01 sshd[13467]: Failed password for invalid user oracle from 192.0.2.77 port 58244 ssh2
+Sep 18 17:48:30 bastion-01 sshd[29006]: Failed password for invalid user test from 192.0.2.77 port 62384 ssh2
+Sep 18 17:54:12 bastion-01 sshd[13573]: Accepted publickey for akim from 100.64.12.27 port 35705 ssh2
+Sep 18 18:03:12 bastion-01 sshd[25428]: Accepted publickey for deploy from 100.64.12.14 port 49498 ssh2
+Sep 18 18:12:12 bastion-01 sshd[19023]: Accepted publickey for akim from 100.64.12.21 port 60946 ssh2
+Sep 18 18:21:12 bastion-01 sshd[16368]: Accepted publickey for deploy from 100.64.12.5 port 47310 ssh2
+Sep 18 18:30:12 bastion-01 sshd[20283]: Accepted publickey for deploy from 100.64.12.23 port 59915 ssh2
+Sep 18 18:39:12 bastion-01 sshd[17847]: Accepted publickey for akim from 100.64.12.16 port 51091 ssh2
+Sep 18 18:48:12 bastion-01 sshd[11542]: Accepted publickey for akim from 100.64.12.9 port 46996 ssh2
+Sep 18 18:57:12 bastion-01 sshd[8964]: Accepted publickey for akim from 100.64.12.27 port 30927 ssh2
+Sep 18 19:06:12 bastion-01 sshd[16672]: Accepted publickey for deploy from 100.64.12.12 port 52909 ssh2
+Sep 18 19:15:12 bastion-01 sshd[24359]: Accepted publickey for deploy from 100.64.12.24 port 32820 ssh2
+Sep 18 19:24:12 bastion-01 sshd[20969]: Accepted publickey for akim from 100.64.12.25 port 57207 ssh2

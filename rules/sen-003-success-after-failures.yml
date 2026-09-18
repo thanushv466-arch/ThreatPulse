@@ -1,0 +1,28 @@
+id: SEN-003
+title: Successful login after repeated failures
+description: A source that failed SSH authentication several times then logged in successfully.
+severity: critical
+type: sequence
+match:
+  action: ssh_login
+  outcome: failure
+then:
+  action: ssh_login
+  outcome: success
+group_by: src_ip
+window: 900
+count: 5
+mitre:
+  tactic: Initial Access
+  technique: T1078
+  name: Valid Accounts
+explain: >
+  The burglar tried a ring of keys, and then the door opened. The failures
+  were noise. The success is the emergency, because now they are inside.
+false_positives:
+  - A real user who forgot their password and eventually remembered it
+response:
+  - Treat the account as compromised. Disable it and kill its active sessions
+  - Review everything that account did after the successful login
+  - Reset the credential and look for new SSH keys, cron jobs, or accounts
+  - Block the source address

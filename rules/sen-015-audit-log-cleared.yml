@@ -1,0 +1,22 @@
+id: SEN-015
+title: Security audit log cleared
+description: The Windows Security event log was cleared (event 1102).
+summary: "Cleared by {actor} on {host}"
+severity: critical
+type: match
+match:
+  action: audit_log_cleared
+group_by: host
+mitre:
+  tactic: Defense Evasion
+  technique: T1070.001
+  name: "Indicator Removal: Clear Windows Event Logs"
+explain: >
+  Wiping the fingerprints and taking the CCTV tape. Almost nobody clears
+  this log for an honest reason, and the act of clearing it is itself
+  recorded, which is the one fingerprint they cannot wipe.
+false_positives:
+  - Almost none in production
+response:
+  - Treat the host as compromised until proven otherwise
+  - Recover the missing window from the central log copy, which is exactly why logs get forwarded

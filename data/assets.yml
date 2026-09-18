@@ -1,0 +1,11 @@
+# Asset inventory. Knowing WHAT was attacked changes how much you care:
+# a failed login on a test box and on the domain controller are different days.
+assets:
+  web-01:     {ip: 10.0.1.10, role: Public web server,   criticality: critical, owner: Web Platform}
+  bastion-01: {ip: 10.0.1.5,  role: SSH jump host,       criticality: high,     owner: Infrastructure}
+  db-01:      {ip: 10.0.2.20, role: Customer database,   criticality: critical, owner: Data Platform}
+  dc-01:      {ip: 10.0.2.2,  role: Domain controller,   criticality: critical, owner: Identity}
+  fs-01:      {ip: 10.0.2.30, role: File server,         criticality: high,     owner: Infrastructure}
+  fw-01:      {ip: 10.0.0.1,  role: Perimeter firewall,  criticality: critical, owner: Network}
+  WS-014:     {ip: 10.0.5.14, role: Finance workstation, criticality: medium,   owner: M. Lopez}
+  WS-022:     {ip: 10.0.5.22, role: IT workstation,      criticality: medium,   owner: A. Kim}

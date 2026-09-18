@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+
+# Runtime data (the database is rebuilt every time you run the demo)
+var/
+
+# macOS and editors
+.DS_Store
+.vscode/
+.idea/
+
+# Secrets never belong in a repo
+.env

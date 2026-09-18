@@ -1,0 +1,23 @@
+id: SEN-007
+title: Known attack tool user agent
+description: A web client identifying itself as a common scanning or exploitation tool.
+summary: "User agent: {user_agent}"
+severity: low
+type: match
+match:
+  action: http_request
+  user_agent|contains_any: [sqlmap, nikto, nmap, gobuster, dirbuster, wpscan, nuclei, masscan, zgrab]
+group_by: src_ip
+suppress: 3600
+mitre:
+  tactic: Reconnaissance
+  technique: T1595.002
+  name: "Active Scanning: Vulnerability Scanning"
+explain: >
+  A stranger walking your fence line in a jacket that says "LOCKPICK CLUB."
+  Careless attackers leave the tool's default name on. Skilled ones change
+  it, so this is a cheap early warning, never proof of safety.
+false_positives:
+  - Your own vulnerability management scans
+response:
+  - Low priority alone. Raise the priority if the same source triggers other rules
